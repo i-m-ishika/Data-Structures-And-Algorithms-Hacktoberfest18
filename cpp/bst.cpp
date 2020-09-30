@@ -30,31 +30,23 @@ node* insertinbst(node* &root,int data)
 }
 node* takeInput()
 {
-    node* root;
+    node *root = NULL;
     int data;
-    cin>>data;
-    while(data!=-1)
-    {
-        root=insertinbst(root,data);
+    do{
         cin>>data;
-    }
-    return root;
+        root=insertinbst(root,data);
+    }while(data!=-1)
 }
 
 node* Search(node* root,int key)
 {
-    if(root==NULL)
-    {
+    if(!root)
         return root;
-    }
-    if(root->data==key)
-        return root;
-    else if(root->data>key)
-    {
-        return Search(root->left,key);
-    }
-    else
-        return Search(root->right,key);
+    if(root->data > key)
+        return Search(root->left, key);
+    else if(root->data < key)
+        return Search(root->right, key);
+    return root;
 }
 
 void preorderTraversal(node* root)
